@@ -1,5 +1,8 @@
 # 🤖 Local AI Chatbot – Spring Boot & Ollama
 
+![Stars](https://img.shields.io/github/stars/arshadkhan93/Local-AI-Chatbot-Spring-Boot-Ollama-Gemma-2B-?style=social)
+![Forks](https://img.shields.io/github/forks/your-username/your-repo-name?style=social)
+
 A full-stack AI chatbot application that runs entirely on a local machine using **Spring Boot**, **JavaScript**, and **Ollama (Gemma 2B)**.
 
 This project simulates a ChatGPT-like experience without relying on paid APIs, ensuring privacy and offline capability.
