@@ -1,10 +1,10 @@
-package com.first;
+package com.arshad.ai;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class ProjectSb001ApplicationTests {
+class LocalAiChatbotApplicationTests {
 
 	@Test
 	void contextLoads() {

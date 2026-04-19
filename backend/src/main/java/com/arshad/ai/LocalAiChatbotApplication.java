@@ -1,13 +1,13 @@
-package com.first;
+package com.arshad.ai;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProjectSb001Application {
+public class LocalAiChatbotApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ProjectSb001Application.class, args);
+		SpringApplication.run(LocalAiChatbotApplication.class, args);
 	}
 
 }

@@ -8,24 +8,12 @@
 		<version>3.5.7</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.first</groupId>
-	<artifactId>Project_SB_001</artifactId>
-	<version>0.0.1</version>
-	<name>Project_SB_001</name>
-	<description>Demo project for Spring Boot</description>
+	<groupId>com.arshad</groupId>
+	<artifactId>local-ai-chatbot-backend</artifactId>
+	<version>1.0.0</version>
+	<name>Local AI Chatbot Backend</name>
+	<description>Spring Boot backend for Local AI Chatbot using Ollama</description>
 	<url/>
-	<licenses>
-		<license/>
-	</licenses>
-	<developers>
-		<developer/>
-	</developers>
-	<scm>
-		<connection/>
-		<developerConnection/>
-		<tag/>
-		<url/>
-	</scm>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -38,7 +26,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webflux</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -56,7 +43,6 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>
@@ -65,5 +51,4 @@
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

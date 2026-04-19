@@ -1,13 +1,9 @@
-package com.first;
+package com.arshad.ai;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.Map;
 import org.springframework.http.HttpHeaders;
-import org.springframework.stereotype.Service;
-import org.springframework.web.reactive.function.client.WebClient;
-import reactor.core.publisher.Mono;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,38 +12,30 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
-
 import reactor.core.publisher.Mono;
+
 @RestController
 @RequestMapping("/api")
 @CrossOrigin(origins = "*")
-public class FirstController {
+public class ChatController {
 
-	   // ✅ Store last 5 user questions
     private final Deque<String> lastQuestions = new ArrayDeque<>(5);
-
-    WebClient client = WebClient.create("http://localhost:11434/api/generate");
+    private final WebClient client = WebClient.create("http://localhost:11434/api/generate");
 
     @PostMapping
-    public ResponseEntity<String> program(@RequestBody String userInput) {
-
-        // ✅ Save question to history (max 5)
+    public ResponseEntity<String> chat(@RequestBody String userInput) {
         saveQuestion(userInput);
-
-        // Call local AI (Ollama)
         String reply = askOllama(userInput).block();
-
         return ResponseEntity.ok(reply);
     }
 
     private void saveQuestion(String question) {
         if (lastQuestions.size() == 5) {
-            lastQuestions.removeFirst(); // remove oldest
+            lastQuestions.removeFirst();
         }
         lastQuestions.addLast(question);
     }
 
-    // ✅ API to fetch last 5 questions (optional)
     @GetMapping("/history")
     public ResponseEntity<?> getHistory() {
         return ResponseEntity.ok(lastQuestions);
@@ -67,4 +55,3 @@ public class FirstController {
             .bodyToMono(String.class);
     }
 }
-
