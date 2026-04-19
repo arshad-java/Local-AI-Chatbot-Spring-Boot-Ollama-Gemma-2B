@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Chat App</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            width: 300px;
+            padding: 10px;
+        }
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+        #response {
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+        }
+        #history {
+            margin-top: 20px;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>🤖 AI Chat</h1>
+
+<input type="text" id="question" placeholder="Ask something..." />
+<button onclick="sendQuestion()">Send</button>
+
+<p id="response"></p>
+
+<h3>Last 5 Questions</h3>
+<button onclick="loadHistory()">Load History</button>
+<ul id="history"></ul>
+
+<script>
+function sendQuestion() {
+    let questionInput = document.getElementById("question");
+    let question = questionInput.value.trim();
+
+    if (!question) {
+        alert("Please enter a question!");
+        return;
+    }
+
+    fetch("http://localhost:9090/api", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ question: question })
+    })
+    .then(res => res.json()) // ✅ FIX: parse JSON
+    .then(data => {
+        // ✅ FIX: show only AI response
+        document.getElementById("response").innerText = data.response;
+        questionInput.value = ""; // clear input
+    })
+    .catch(err => {
+        console.error(err);
+        document.getElementById("response").innerText = "Error getting response";
+    });
+}
+
+function loadHistory() {
+    fetch("http://localhost:9090/api/history")
+    .then(res => res.json())
+    .then(data => {
+        let list = document.getElementById("history");
+        list.innerHTML = "";
+
+        data.forEach(q => {
+            let li = document.createElement("li");
+            li.innerText = q;
+            list.appendChild(li);
+        });
+    })
+    .catch(err => {
+        console.error(err);
+    });
+}
+</script>
+
+</body>
+</html>
